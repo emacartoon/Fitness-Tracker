@@ -23,8 +23,6 @@ const API = {
 
     return json;
   },
-
-  //triggered by: handleFormSubmit exercise.js ~line23
   async createWorkout(data = {}) {
     const res = await fetch("/api/workouts", {
       method: "POST",
