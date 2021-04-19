@@ -36,8 +36,11 @@ Mongoose
 
 ## Screenshots
 
-![Screenshot](./sshot/Screenshot.png)
-Screenshot - First view before sign in
+![Screenshot of Initial Page](./sshot/Screenshot.png)
+Screenshot - First view
+
+![Screenshot of Dashboard](./sshot/Screenshot_DB.png)
+Screenshot - Dashboard using MongoDB's data
 
 ## Questions
 
