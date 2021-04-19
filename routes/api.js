@@ -34,12 +34,12 @@ router.post("/workouts", ({ body }, res) => {
 // /api/workouts/:id Update a workout
 router.put("/workouts/:id", async function (req, res) {
   try {
-    const updateWorkout = await Workout.findByIDAndUpdate(
+    const updateWorkout = await Workout.findByIdAndUpdate(
       req.params.id,
       {
         $push: { exercises: req.body },
       },
-      { new: true }
+      // { new: true }
     );
     res.json(updateWorkout);
   } catch (err) {
@@ -50,12 +50,18 @@ router.put("/workouts/:id", async function (req, res) {
 // /api/workouts/range get a range
 router.get("/workouts/range", async function (req, res) {
   try {
-    const range = await Workout.find({})
+    const range = await Workout.aggregate([
+      {
+        $addFields: {
+          totalDuration: {
+            $sum: "$exercise.duration",
+          },
+        },
+      },
+    ])
       .sort({ day: -1 })
       .limit(7)
-      .then((range) => {
         res.json(range);
-      });
   } catch (err) {
     res.status(500).send();
   }
